@@ -24,11 +24,13 @@ public class CreateRequest extends AbstractRequest {
     private List<ZkAcl> aclList;
     private int flags;
 
-    public static CreateRequest createRequest() {
+    public static CreateRequest createRequest(String path, String data) {
         CreateRequest createRequest = new CreateRequest();
         createRequest.setXid(IdGeneratorUtil.generate());
         createRequest.setType(OpCode.CREATE);
         createRequest.setFlags(CreateModeEnum.EPHEMERAL.getFlag());
+        createRequest.setPath(path);
+        createRequest.setData(data);
 
         ZkAcl acl = new ZkAcl();
         acl.setId("anyone");

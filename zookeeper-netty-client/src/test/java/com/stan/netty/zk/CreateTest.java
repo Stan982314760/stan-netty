@@ -19,9 +19,7 @@ public class CreateTest {
     @Test
     public void testCreate() throws ExecutionException, InterruptedException {
         CreateCommand createCommand = new DefaultCreateCommand();
-        CreateRequest request = CreateRequest.createRequest();
-        request.setPath("/test");
-        request.setData("stan");
+        CreateRequest request = CreateRequest.createRequest("/test", "stan");
         CompletableFuture<Response> future = createCommand.create(request);
         future.get();
     }
