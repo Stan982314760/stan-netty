@@ -2,10 +2,10 @@ package com.stan.netty.zk.codec.create;
 
 import com.stan.netty.zk.constant.ZookeeperConstant;
 import com.stan.netty.zk.entity.create.CreateResponse;
+import com.stan.netty.zk.util.ByteBufUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -51,12 +51,10 @@ public class CreateDecoder extends LengthFieldBasedFrameDecoder {
         CreateResponse response = new CreateResponse();
         response.setXid(msg.readInt()); // xid
         response.setZXid(msg.readLong()); // zXid
-        response.setErrorCode(msg.readInt()); // errorCode
-        int pathLen = msg.readInt();
-        if (pathLen > 0) {
-            byte[] bytes = new byte[pathLen];
-            msg.readBytes(bytes);
-            response.setPath(new String(bytes, CharsetUtil.UTF_8));
+        int errCode = msg.readInt();
+        response.setErrorCode(errCode); // errorCode
+        if (errCode == 0) {
+           response.setPath(ByteBufUtil.readStr(msg));
         }
 
         return response;

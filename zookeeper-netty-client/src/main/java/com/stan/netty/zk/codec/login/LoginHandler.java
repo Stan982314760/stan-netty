@@ -29,7 +29,7 @@ public class LoginHandler extends SimpleChannelInboundHandler<LoginResponse> {
             log.info("login to zk success!!, the resp is {}", msg);
             unprocessedRequest.complete(ZookeeperEnum.LOGIN.name(), msg);
 
-            log.info("start removing handler bound to login");
+            log.info("start removing handler bound to login command");
             ctx.pipeline().remove(ZookeeperConstant.LOGIN_DECODER_NAME);
             ctx.pipeline().remove(ZookeeperConstant.LOGIN_ENCODER_NAME);
             ctx.pipeline().remove(ZookeeperConstant.LOGIN_HANDLER_NAME);

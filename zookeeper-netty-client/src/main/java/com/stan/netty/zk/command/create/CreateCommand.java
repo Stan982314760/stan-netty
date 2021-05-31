@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @Author: stan
  * @Date: 2021/05/29
- * @Description:
+ * @Description: CREATE 命令接口
  */
 public interface CreateCommand extends Command {
 

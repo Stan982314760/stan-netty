@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @Author: stan
  * @Date: 2021/05/28
- * @Description:
+ * @Description: Login 命令接口
  */
 public interface LoginCommand extends Command {
 

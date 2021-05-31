@@ -1,11 +1,11 @@
 package com.stan.netty.zk.codec.login;
 
-import com.stan.netty.zk.entity.login.LoginResponse;
 import com.stan.netty.zk.constant.ZookeeperConstant;
+import com.stan.netty.zk.entity.login.LoginResponse;
+import com.stan.netty.zk.util.ByteBufUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -54,13 +54,7 @@ public class LoginDecoder extends LengthFieldBasedFrameDecoder {
         response.setProtocolVersion(msg.readInt());
         response.setTimeout(msg.readInt());
         response.setSessionId(msg.readLong());
-        // psd
-        int psdLength = msg.readInt();
-        if (psdLength > 0) {
-            byte[] psd = new byte[psdLength];
-            msg.readBytes(psd);
-            response.setPassword(new String(psd, CharsetUtil.UTF_8));
-        }
+        response.setPassword(ByteBufUtil.readStr(msg));
         response.setReadOnly(msg.readBoolean());
         return response;
     }

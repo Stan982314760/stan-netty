@@ -15,12 +15,17 @@ public class ZookeeperConstant {
     /**
      * 登录响应的消息体最小长度
      */
-    public static final int LOGIN_RESP_MIN_LENGTH = 25;
+    public static final int LOGIN_RESP_MIN_LENGTH = 21;
 
     /**
      * CREATE 响应体消息最小长度
      */
-    public static final int CREATE_RESP_MIN_LENGTH = 24;
+    public static final int CREATE_RESP_MIN_LENGTH = 16;
+
+    /**
+     * getChildren 响应体消息最小长度
+     */
+    public static final int CHILDREN_RESP_MIN_LENGTH = 16;
 
     /**
      * zk的配置文件
@@ -48,6 +53,11 @@ public class ZookeeperConstant {
      */
     public static final String CREATE_ENCODER_NAME = "createEncoder";
 
+    /**
+     * getChildren编码器名称
+     */
+    public static final String CHILDREN_ENCODER_NAME = "childrenEncoder";
+
 
     /**
      * 登录解码器名称
@@ -61,6 +71,12 @@ public class ZookeeperConstant {
 
 
     /**
+     * getChildren解码器名称
+     */
+    public static final String CHILDREN_DECODER_NAME = "childrenDecoder";
+
+
+    /**
      * 登录处理器名称
      */
     public static final String LOGIN_HANDLER_NAME = "loginHandler";
@@ -70,5 +86,10 @@ public class ZookeeperConstant {
      * CREATE处理器名称
      */
     public static final String CREATE_HANDLER_NAME = "createHandler";
+
+    /**
+     * getChildren处理器名称
+     */
+    public static final String CHILDREN_HANDLER_NAME = "childrenHandler";
 
 }
